@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Class Attendance Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Attendance Calculator</h1>
+    <form id="attForm" method="post" action="{{ url_for('calculate') }}">
+      <table id="tbl">
+        <thead>
+          <tr><th>Attended</th><th>Total Classes</th><th></th></tr>
+        </thead>
+        <tbody id="rows">
+          <tr>
+            <td><input name="attended" type="number" min="0" required></td>
+            <td><input name="total" type="number" min="0" required></td>
+            <td><button type="button" class="remove" onclick="removeRow(this)">−</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="controls">
+        <button type="button" onclick="addRow()">Add row +</button>
+        <button type="submit">Calculate</button>
+      </div>
+    </form>
+  </div>
+
+<script>
+function addRow(){
+  const tbody = document.getElementById('rows');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input name="attended" type="number" min="0" required></td>
+    <td><input name="total" type="number" min="0" required></td>
+    <td><button type="button" class="remove" onclick="removeRow(this)">−</button></td>
+  `;
+  tbody.appendChild(tr);
+}
+function removeRow(btn){
+  const tr = btn.closest('tr');
+  const tbody = document.getElementById('rows');
+  if (tbody.rows.length > 1) tr.remove();
+}
+</script>
+</body>
+</html>

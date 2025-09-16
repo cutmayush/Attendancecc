@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Result - Attendance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Attendance Result</h1>
+    <p>Total classes attended: <strong>{{ attended }}</strong></p>
+    <p>Total classes held: <strong>{{ classes }}</strong></p>
+    <p>Overall Percentage: <strong>{{ "%.2f"|format(percentage) }}%</strong></p>
+
+    <a href="{{ url_for('index') }}">Back</a>
+  </div>
+</body>
+</html>
